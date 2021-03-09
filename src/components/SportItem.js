@@ -2,7 +2,7 @@
 
 const SportItem = (props) => {
   return (
-    <div>
+    <div onClick={() => alert("hello")}>
       <h2>{props.sport.title}</h2>
       <p>
         {props.sport.title} is a {props.sport.nature} sports

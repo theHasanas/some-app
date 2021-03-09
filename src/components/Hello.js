@@ -1,8 +1,10 @@
+import { HelloText } from "./styles";
+
 const Hello = (props) => {
   return (
-    <h1>
+    <HelloText color="pink">
       {props.greeting} {props.name}, you are {props.age}
-    </h1>
+    </HelloText>
   );
 };
 
