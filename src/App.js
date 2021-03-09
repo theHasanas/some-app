@@ -1,44 +1,24 @@
-import { useState } from "react";
+import { observer } from "mobx-react";
 import { ThemeProvider } from "styled-components";
+import CreateSport from "./components/CreateSport";
+import SportItem from "./components/SportItem";
 import { darkTheme, AppWrapper, GlobalStyle } from "./components/styles";
+import sportStore from "./store/sportStore";
 
 function App() {
-  const [number, setNumber] = useState(5);
-
-  const [nameInput, setNameInput] = useState("");
-  const [name, setName] = useState("no name");
-
-  const decrement = () => {
-    setNumber(number - 1);
-    // number = number - 1
-  };
-
-  const handleInputChange = (event) => {
-    const newInput = event.target.value;
-    setNameInput(newInput);
-  };
-
   return (
     <ThemeProvider theme={darkTheme}>
       <AppWrapper>
         <GlobalStyle />
-        <h1>{name}</h1>
 
-        <input onChange={handleInputChange} />
-        <button onClick={() => setName(nameInput)}>Confirm Name</button>
+        {sportStore.allSports.map((sport) => (
+          <SportItem sport={sport} />
+        ))}
 
-        <br />
-        <br />
-        <br />
-
-        <button onClick={() => setNumber(number + 1)}>+</button>
-
-        <h1>{number}</h1>
-
-        <button onClick={decrement}>-</button>
+        <CreateSport />
       </AppWrapper>
     </ThemeProvider>
   );
 }
 
-export default App;
+export default observer(App);
